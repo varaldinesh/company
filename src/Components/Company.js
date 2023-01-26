@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function company(props) {
+function Company(props) {
+    const [txt, settxt] = useState("View Details");
     const company = props.company
     const contact = props.contact
     const address = props.address
@@ -13,7 +14,18 @@ function company(props) {
     const id = props.id
     const desc = props.desc
     const pageid = `#${props.id}`
-    const btntxt = props.btntxt
+
+    // chaging view details button text
+    const handleClick = () => {
+        if (txt === "View Details") {
+            settxt("Hide Details")
+        } else {
+            settxt("View Details")
+        }
+    }
+
+
+
     return (
         <div>
             <div className="card m-3 shadow p-3 mb-5 bg-body rounded" style={{ height: 'auto', backgroundColor: 'InfoBackground' }}>
@@ -34,8 +46,8 @@ function company(props) {
                         <span>{state}</span>
                     </div>
                     <div className="col-md ">
-                        <a className="btn btn-primary" data-bs-toggle="collapse" href={pageid} role="button" aria-expanded="false" aria-controls="collapseExample" >
-                            View Details
+                        <a className="btn btn-primary" data-bs-toggle="collapse" href={pageid} role="button" aria-expanded="false" aria-controls="collapseExample" onClick={handleClick}>
+                            {txt}
                         </a>
 
                     </div>
@@ -64,4 +76,4 @@ function company(props) {
     )
 }
 
-export default company
+export default Company
